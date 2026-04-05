@@ -20,6 +20,24 @@
     --glass-border: rgba(255, 255, 255, 0.08);
 }
 
+/* Light Theme Variables */
+[data-theme="light"] {
+    --bg-color: #f8f9fa;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --board-bg: #ffffff;
+    --board-border: #adb5bd;
+    --cell-border: #dee2e6;
+    --cell-hover: rgba(94, 106, 210, 0.1);
+    --cell-selected: rgba(94, 106, 210, 0.3);
+    --cell-highlight: rgba(94, 106, 210, 0.15);
+    --cell-same-num: rgba(0, 0, 0, 0.08);
+    --text-fixed: #212529;
+    --text-user: #5e6ad2;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -34,6 +52,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 #app {
@@ -99,6 +118,21 @@ body {
 .btn.primary:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
+}
+
+.icon-btn {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+}
+
+.icon-btn:hover {
+    background: rgba(94, 106, 210, 0.15);
+    color: var(--accent);
 }
 
 /* Status Bar */
@@ -175,7 +209,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     user-select: none;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     position: relative;
     color: var(--text-fixed);
 }

@@ -20,6 +20,7 @@ class SudokuApp {
         this.timerInterval = null;
         
         this.initUI();
+        this.initTheme();
         this.bindEvents();
         this.startNewGame();
     }
@@ -35,6 +36,31 @@ class SudokuApp {
             this.boardElement.appendChild(cell);
             this.cells.push(cell);
         }
+    }
+
+    initTheme() {
+        const savedTheme = localStorage.getItem('sudoku-theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('theme-icon-moon').style.display = 'none';
+            document.getElementById('theme-icon-sun').style.display = 'block';
+        }
+    }
+
+    toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        if (newTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('theme-icon-moon').style.display = 'none';
+            document.getElementById('theme-icon-sun').style.display = 'block';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            document.getElementById('theme-icon-sun').style.display = 'none';
+            document.getElementById('theme-icon-moon').style.display = 'block';
+        }
+        localStorage.setItem('sudoku-theme', newTheme);
     }
 
     bindEvents() {
@@ -66,6 +92,7 @@ class SudokuApp {
 
         // Controls
         document.getElementById('btn-new-game').addEventListener('click', () => this.startNewGame());
+        document.getElementById('btn-theme').addEventListener('click', () => this.toggleTheme());
         
         // Tools
         document.getElementById('btn-memo').addEventListener('click', () => this.toggleMemoMode());
